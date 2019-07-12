@@ -186,7 +186,10 @@ class Intent(object):
             used_tags.append(optional_tag)
             intent_confidence += 1.0
 
-        total_confidence = intent_confidence / len(tags) * confidence
+        if len(tags) > 0:
+            total_confidence = intent_confidence / len(tags) * confidence
+        else:
+            total_confidence = 0
 
         target_client, canonical_form, confidence = find_first_tag(local_tags, CLIENT_ENTITY_NAME)
 
